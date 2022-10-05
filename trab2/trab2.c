@@ -40,10 +40,7 @@ struct tno *remover(struct tno *no, int x) {
             no->chave = -1;
             return no;
         } else {
-            // printf("aquidqw\n");
-            tno* antigo = no;
             no = no->prox;
-            free(antigo);
             return no;
         }
     }
@@ -51,14 +48,12 @@ struct tno *remover(struct tno *no, int x) {
         tno* antigo = no;
         no = no->prox;
         if (no->chave == x) {
-            // printf("TA PRINTADO AQIQ\n");
             if (no->prox == NULL) {
                 antigo->prox = NULL;
                 return antigo;
             } else {
-                tno* antigo = no;
+                antigo = no;
                 no = no->prox;
-                free(antigo);
                 return no;
             }
         }
@@ -114,12 +109,15 @@ int main(int argc, char **argv) {
     for (int i = 0; i < qt; i++) {
         tamanhos[i] = tamanho(vent+i);
     }
-    for (int i = 0; i < qt; i++) {
+    for (int j = 0; j < qt; j++) {
         int index;
         for (int i = 0; i < qt; i++) {
             if (tamanhos[i] == 0) {
                 tamanhos[i] = -1;
-                printf("%d ", i+1); // Printa os vertices na ordem correta
+                printf("%d", i+1); // Printa os vertices na ordem correta
+                if (j != qt-1) {
+                    printf(" ");
+                }
                 index = i;
                 break;
             }
